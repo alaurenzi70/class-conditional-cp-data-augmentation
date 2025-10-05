@@ -25,5 +25,9 @@ This folder contains Jupyter notebooks for the **real-world applications** prese
    Functions adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal)..
 
 6. **WM_cnn_class_conformal**  
-   Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.  
+   Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.
+
+## Workflow overview
+<img width="4032" height="1989" alt="image" src="https://github.com/user-attachments/assets/3cd89af9-a336-4645-b82d-d89709d156f1" />
+
 
