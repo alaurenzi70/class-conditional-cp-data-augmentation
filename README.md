@@ -2,6 +2,7 @@
 Data, trained models, and notebooks for simulations and real-data experiments from the article: 
 
 **Title**: Enhancing Class-Conditional Conformal Prediction for Multiclass Scenarios with Data Augmentation
+
 **Authors**: Andrea Laurenzi, Matteo Borrotti
 (submitted to JMLR)
 [DOI / arXiv link – add here]
