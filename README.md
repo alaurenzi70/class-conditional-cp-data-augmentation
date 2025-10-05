@@ -1,12 +1,26 @@
 # class-conditional-cp-data-augmentation
-Data, trained models, and notebooks for simulations and real-data experiments from the paper “Class-Conditional Conformal Prediction with Data Augmentation” (submitted to JMLR)
+Data, trained models, and notebooks for simulations and real-data experiments from the article: 
+
+**Title**: Enhancing Class-Conditional Conformal Prediction for Multiclass Scenarios with Data Augmentation
+**Authors**: Andrea Laurenzi, Matteo Borrotti
+(submitted to JMLR)
+[DOI / arXiv link – add here]
 
 
-# Notebooks/Real Examples – Empirical Part of Section 3
+## Repository Structure
+
+- **`notebooks/simulations/`** – Jupyter notebooks for empirical experiments (Section 3.2 and Appendix C)
+- **`notebooks/real_examples/`** – Jupyter notebooks for empirical experiments (Section 3.2 and Appendix C)
+- **`models/`** – Pre-trained models (EfficientNet-B0, CNN)
+- **`dataset/`** – WM-811K wafer map dataset subset and splits
+- **`utils/`** – Utility scripts for data processing, model training, data-augmentation and class-conditional conformal predition
+
+
+## Notebooks/Real Examples – Empirical Part of Section 3
 This folder contains Jupyter notebooks for the **real-world applications** presented in **Section 3.2** and **Appendix C** of the article:
 
 
-## Contents
+### Contents
 
 1. **WMDD Dataset Selection from WM811k**  
    Constructs a subset of the **WM-811K wafer map dataset** and splits it into **train**, **validation**, **calibration**, and **test** sets.
@@ -22,12 +36,25 @@ This folder contains Jupyter notebooks for the **real-world applications** prese
 
 5. **WM_effnet_class_conformal**  
    Applies **class-conditional conformal prediction** using the trained **EfficientNet model** on **calibration** and **test** sets.  
-   Functions adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal)..
+   The functions used for conformal predictions are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
 
 6. **WM_cnn_class_conformal**  
    Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.
 
 ## Workflow overview
 <img width="4032" height="1989" alt="image" src="https://github.com/user-attachments/assets/3cd89af9-a336-4645-b82d-d89709d156f1" />
+
+graph TD
+    A[WM-811K Dataset] --> B[Subset Selection]
+    B -->|Split| B1[Train] & B2[Validation] & B3[Calibration] & B4[Test]
+    B1 & B2 --> C[Train EfficientNet]
+    B1 & B2 --> D[Train CNN]
+    C --> E[Evaluate on Test]
+    D --> F[Evaluate on Test]
+    B3 & B4 --> G[Class-Conditional CP Experiments]
+    G -->|EfficientNet| E1[WM_effnet_class_conformal]
+    G -->|CNN| F1[WM_cnn_class_conformal]
+    B3 --> H[Data Augmentation]
+
 
 
