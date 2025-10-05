@@ -10,11 +10,10 @@ Data, trained models, and notebooks for simulations and real-data experiments fr
 
 
 ## Repository Structure
-
+- **`dataset/`** – WM-811K wafer map dataset subset and splits
+- **`models/`** – Pre-trained models (EfficientNet-B0, CNN)
 - **`notebooks/simulations/`** – Jupyter notebooks for empirical experiments (Section 3.2 and Appendix C)
 - **`notebooks/real_examples/`** – Jupyter notebooks for empirical experiments (Section 3.2 and Appendix C)
-- **`models/`** – Pre-trained models (EfficientNet-B0, CNN)
-- **`dataset/`** – WM-811K wafer map dataset subset and splits
 - **`utils/`** – Utility scripts for data processing, model training, data-augmentation and class-conditional conformal predition
 
 
