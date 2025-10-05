@@ -5,6 +5,7 @@ Data, trained models, and notebooks for simulations and real-data experiments fr
 
 **Authors**: Andrea Laurenzi, Matteo Borrotti
 (submitted to JMLR)
+
 [DOI / arXiv link – add here]
 
 
@@ -44,18 +45,3 @@ This folder contains Jupyter notebooks for the **real-world applications** prese
 
 ## Workflow overview
 <img width="4032" height="1989" alt="image" src="https://github.com/user-attachments/assets/3cd89af9-a336-4645-b82d-d89709d156f1" />
-
-graph TD
-    A[WM-811K Dataset] --> B[Subset Selection]
-    B -->|Split| B1[Train] & B2[Validation] & B3[Calibration] & B4[Test]
-    B1 & B2 --> C[Train EfficientNet]
-    B1 & B2 --> D[Train CNN]
-    C --> E[Evaluate on Test]
-    D --> F[Evaluate on Test]
-    B3 & B4 --> G[Class-Conditional CP Experiments]
-    G -->|EfficientNet| E1[WM_effnet_class_conformal]
-    G -->|CNN| F1[WM_cnn_class_conformal]
-    B3 --> H[Data Augmentation]
-
-
-
