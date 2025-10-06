@@ -17,7 +17,7 @@ Data, trained models, and notebooks for simulations and real-data experiments fr
 - **`utils/`** – Utility scripts for data processing, model training, data-augmentation and class-conditional conformal predition
 
 
-## Notebooks/Simulations – Empirical Part of Section 3.1
+## notebooks/nimulations – Empirical Part of Section 3.1
 This repository contains Jupyter notebooks for the synthetic experiments presented in **Section 3.1** and **Appendix B** of the article.
 
 **Table 5** of the article reports the settings of simulated data scenarios with 8 classes. These experimental settings are provided in the file number_experiments_setup.csv included in this repository.
@@ -48,7 +48,7 @@ This repository contains Jupyter notebooks for the synthetic experiments present
  **2. CP_analysis_01_interval_plots** and **3. CP_analysis_02_interval_plots**
 - Generate the plots reported in **Appendix B** of the article.
 
-## Notebooks/Real Examples – Empirical Part of Section 3.2
+## notebooks/real_examples – Empirical Part of Section 3.2
 This folder contains Jupyter notebooks for the **real-world applications** presented in **Section 3.2** and **Appendix C** of the article:
 
 
