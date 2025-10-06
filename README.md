@@ -49,29 +49,29 @@ This repository contains Jupyter notebooks for the synthetic experiments present
 - Generate the plots reported in **Appendix B** of the article.
 
 ## notebooks/real_examples – Empirical part of Section 3.2
-This folder contains Jupyter notebooks for the **real-world applications** presented in **Section 3.2** and **Appendix C** of the article:
+This folder contains Jupyter notebooks for the real-world applications presented in **Section 3.2** and **Appendix C** of the article:
 
 
 ### Contents
 
  **1. WMDD_dataset_selection_from_wm811k.ipynb**  
-   Constructs a subset of the **WM-811K wafer map dataset** and splits it into **train**, **validation**, **calibration**, and **test** sets.
+   Constructs a subset of the WM-811K wafer map dataset and splits it into train, validation, calibration, and test sets.
 
 **2. WM_Effnet_model.ipynb**  
-   Trains an **EfficientNet** model using **train + validation** sets and evaluates on **test**.
+   Trains an EfficientNet-B0 model using train + validation sets and evaluates on test.
 
 **3.WM_CNN_Model.ipynb**  
-   Trains a **CNN model** using **train + validation** sets and evaluates on **test**.
+   Trains a CNN model using train + validation sets and evaluates on test.
 
 **4.WM_data_augmentation.ipynb**  
-   Applies **traditional data augmentation techniques** to calibration datasets.
+   Applies traditional data augmentation techniques to calibration datasets.
 
 **5. WM_effnet_class_conformal.ipynb**  
-   Applies **class-conditional conformal prediction** using the trained **EfficientNet model** on **calibration** and **test** sets.  
+   Applies class-conditional conformal prediction using the trained EfficientNet-B0 model** on calibration and test sets.  
    
 
 **6. WM_cnn_class_conformal.ipynb**  
-   Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.
+   Applies class-conditional conformal prediction using the trained CNN model on calibration and test sets.
 
    **Important Notes:**
 - The functions used for conformal predictions in notebooks 5 and 6 are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
