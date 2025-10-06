@@ -23,7 +23,7 @@ This repository contains Jupyter notebooks for the synthetic experiments present
 **Table 5** of the article reports the settings of simulated data scenarios with 8 classes. These experimental settings are provided in the file number_experiments_setup.csv included in this repository.
 
 ### Contents
-**1. CP_experiments**
+**1. CP_experiments.ipynb**
 - Simulates the 39 experiments described in Table 5.
 - Trains RF, XGBoost, and MLP models.
 - Applies four conformal prediction methods:
@@ -45,7 +45,7 @@ This repository contains Jupyter notebooks for the synthetic experiments present
   - Once for **α = 0.05**
   (Set α in the `CFG` class; other parameters are read from `number_experiments_setup.csv`.)
 
- **2. CP_analysis_01_interval_plots** and **3. CP_analysis_02_interval_plots**
+ **2. CP_analysis_01_interval_plots.ipynb** and **3. CP_analysis_02_interval_plots.ipynb**
 - Generate the plots reported in **Appendix B** of the article.
 
 ## notebooks/real_examples – Empirical part of Section 3.2
@@ -54,23 +54,23 @@ This folder contains Jupyter notebooks for the **real-world applications** prese
 
 ### Contents
 
-1. **WMDD Dataset Selection from WM811k**  
+ **1. WMDD_dataset_selection_from_wm811k.ipynb**  
    Constructs a subset of the **WM-811K wafer map dataset** and splits it into **train**, **validation**, **calibration**, and **test** sets.
 
-2. **WM_Effnet_model**  
+**2. WM_Effnet_model.ipynb**  
    Trains an **EfficientNet** model using **train + validation** sets and evaluates on **test**.
 
-3. **WM_CNN_model**  
+**3.WM_CNN_Model.ipynb**  
    Trains a **CNN model** using **train + validation** sets and evaluates on **test**.
 
-4. **WM_data_augmentation**  
+**4.WM_data_augmentation.ipynb**  
    Applies **traditional data augmentation techniques** to calibration datasets.
 
-5. **WM_effnet_class_conformal**  
+**5. WM_effnet_class_conformal.ipynb**  
    Applies **class-conditional conformal prediction** using the trained **EfficientNet model** on **calibration** and **test** sets.  
    
 
-6. **WM_cnn_class_conformal**  
+**6. WM_cnn_class_conformal.ipynb**  
    Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.
 
    **Important Notes:**
