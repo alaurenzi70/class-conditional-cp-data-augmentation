@@ -68,10 +68,13 @@ This folder contains Jupyter notebooks for the **real-world applications** prese
 
 5. **WM_effnet_class_conformal**  
    Applies **class-conditional conformal prediction** using the trained **EfficientNet model** on **calibration** and **test** sets.  
-   The functions used for conformal predictions are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
+   
 
 6. **WM_cnn_class_conformal**  
    Applies **class-conditional conformal prediction** using the trained **CNN model** on **calibration** and **test** sets.
+
+   **Important Notes:**
+- The functions used for conformal predictions in notebooks 5 and 6 are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
 
 ### Workflow overview
 <img width="4032" height="1989" alt="image" src="https://github.com/user-attachments/assets/3cd89af9-a336-4645-b82d-d89709d156f1" />
