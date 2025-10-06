@@ -17,7 +17,38 @@ Data, trained models, and notebooks for simulations and real-data experiments fr
 - **`utils/`** – Utility scripts for data processing, model training, data-augmentation and class-conditional conformal predition
 
 
-## Notebooks/Real Examples – Empirical Part of Section 3
+## Notebooks/Simulations – Empirical Part of Section 3.1
+This repository contains Jupyter notebooks for the synthetic experiments presented in **Section 3.1** and **Appendix B** of the article.
+
+**Table 5** of the article reports the settings of simulated data scenarios with 8 classes. These experimental settings are provided in the file number_experiments_setup.csv included in this repository.
+
+### Contents
+**1. CPexperiments**
+- Simulates the 39 experiments described in Table 5.
+- Trains RF, XGBoost, and MLP models.
+- Applies four conformal prediction methods:
+  - Standard
+  - Classwise
+  - Clustered
+  - Augmented
+- Saves results in CSV files.
+
+**Important Notes:**
+- Original runs were executed in Google Colab. Due to disconnection issues, results were split:
+  - For **α = 0.10**:  
+    `summary_01_part1.csv`, `summary_01_part2.csv`, `summary_01_part3.csv`
+  - For **α = 0.05**:  
+    `summary_005_part1.csv`, `summary_005_part2.csv`, `summary_005_part3.csv`
+- Full simulation can still be executed in one run.
+- Run the notebook **twice**:
+  - Once for **α = 0.10**
+  - Once for **α = 0.05**
+  (Set α in the `CFG` class; other parameters are read from `number_experiments_setup.csv`.)
+
+ **2. CP_analysis_01_interval_plots** and **2. CP_analysis_02_interval_plots**
+- Generate the plots reported in **Appendix B** of the article.
+
+## Notebooks/Real Examples – Empirical Part of Section 3.2
 This folder contains Jupyter notebooks for the **real-world applications** presented in **Section 3.2** and **Appendix C** of the article:
 
 
