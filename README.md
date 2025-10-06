@@ -23,7 +23,7 @@ This repository contains Jupyter notebooks for the synthetic experiments present
 **Table 5** of the article reports the settings of simulated data scenarios with 8 classes. These experimental settings are provided in the file number_experiments_setup.csv included in this repository.
 
 ### Contents
-**1. CPexperiments**
+**1. CP_experiments**
 - Simulates the 39 experiments described in Table 5.
 - Trains RF, XGBoost, and MLP models.
 - Applies four conformal prediction methods:
@@ -45,7 +45,7 @@ This repository contains Jupyter notebooks for the synthetic experiments present
   - Once for **α = 0.05**
   (Set α in the `CFG` class; other parameters are read from `number_experiments_setup.csv`.)
 
- **2. CP_analysis_01_interval_plots** and **2. CP_analysis_02_interval_plots**
+ **2. CP_analysis_01_interval_plots** and **3. CP_analysis_02_interval_plots**
 - Generate the plots reported in **Appendix B** of the article.
 
 ## Notebooks/Real Examples – Empirical Part of Section 3.2
