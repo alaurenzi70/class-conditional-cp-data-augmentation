@@ -77,4 +77,5 @@ This folder contains Jupyter notebooks for the real-world applications presented
 - The functions used for conformal predictions in notebooks 5 and 6 are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
 
 ### Workflow overview
-<img width="4032" height="1989" alt="image" src="https://github.com/user-attachments/assets/3cd89af9-a336-4645-b82d-d89709d156f1" />
+<img width="1698" height="613" alt="image" src="https://github.com/user-attachments/assets/e59c443f-7d67-4e63-ae38-50f6320b3caa" />
+
