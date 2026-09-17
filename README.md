@@ -107,12 +107,14 @@ classwise TTA-Avg and classwise orbit-averaged APS, with marginal and clustered
 conformal prediction as baselines and the naive multi-copy construction as a
 diagnostic.
 
+##RemarK: 
 The wafer-map study needs the fitted classifiers, archived at
 [https://doi.org/10.5281/zenodo.22810300](https://doi.org/10.5281/zenodo.22810300).
 Download them into `models/`, then run `wm-train-export.ipynb` to produce the
 probability arrays and `7_WM_real_data_models.ipynb` for the conformal analysis.
 The training notebooks reproduce the models from the splits in `dataset/`, though
 retraining does not recover the exact weights.
+
 ---
 
 ## Reproducing the results
