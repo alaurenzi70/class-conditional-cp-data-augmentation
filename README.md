@@ -87,25 +87,32 @@ of each one before running.
 ## `notebooks/real_examples/`
 
 **1. `WMDD_dataset_selection_from_wm811k.ipynb`** — builds the subset of
-WM-811K and its splits.
+WM-811K used in the study and splits it into training, validation, calibration
+and test sets.
 
-**2–5.** Training notebooks for the four classifiers: a CNN trained from
-scratch, EfficientNet-B0, ResNeXt-50 and CoaT-Tiny, the last three fine-tuned
-from ImageNet weights.
+**2. `WM_train_models.ipynb`** — fine-tunes EfficientNet-B0, ResNeXt-50 and
+CoaT-Tiny from ImageNet weights.
 
-**6. `wm-train-export.ipynb`** — computes, for every held-out wafer and every
-element of $D_4$, the predicted probabilities of each fitted model, and writes
-them as `<tag>_probs.npy` of shape `(8, n, 8)` together with the labels and a
-metadata file. The eight forward passes are done once here; the conformal
-notebook then resamples calibration/test splits of an array already in memory.
-Exports are reused when the checkpoint and the held-out set are unchanged, which
-is verified through a SHA1 of the held-out index.
+**3. `WM_train_CNN.ipynb`** — trains the convolutional network from scratch.
 
-**7. `7_WM_real_data_models.ipynb`** — the conformal analysis: 300
+**4. `WM_CNN_export.ipynb`** and **5. `WM_models_export.ipynb`** — compute, for
+every held-out wafer and every element of $D_4$, the predicted probabilities of
+the fitted models, and write them as `<tag>_probs.npy` of shape `(8, n, 8)`
+together with the labels and a metadata file. The two notebooks differ only in
+the framework, Keras for the convolutional network and timm for the three
+fine-tuned architectures. The eight forward passes are done once here; the
+conformal notebook then resamples calibration/test splits of an array already in
+memory, so the cost does not scale with the number of replications. An export is
+reused when the checkpoint and the held-out set are unchanged, which is verified
+through a SHA1 of the held-out index.
+
+**6. `WM_real_data_models.ipynb`** — the conformal analysis. Three hundred
 calibration/test splits at $\alpha \in \{0.10, 0.01\}$, comparing classwise APS,
 classwise TTA-Avg and classwise orbit-averaged APS, with marginal and clustered
 conformal prediction as baselines and the naive multi-copy construction as a
-diagnostic.
+diagnostic. Reports coverage, prediction-set size and the within-orbit score
+variance, the last of which measures how far the transformations depart from
+leaving the class-conditional distributions invariant.
 
 ##RemarK: 
 The wafer-map study needs the fitted classifiers, archived at
