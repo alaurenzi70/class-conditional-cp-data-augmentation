@@ -2,11 +2,10 @@
 
 Code, data and notebooks for the article
 
-**Enhancing Class-Conditional Conformal Prediction for Multiclass Scenarios
-with Data Augmentation**
+**Data Augmentation in Class-Conditional Conformal Prediction: Validity, Efficiency, and Calibration Limits**
 Andrea Laurenzi, Matteo Borrotti
 
-[DOI / arXiv link – add here]
+
 
 This repository accompanies the revised version of the manuscript. The method
 proposed in the first submission treated transformed copies of a calibration
@@ -22,7 +21,7 @@ retained in the experiments as a diagnostic benchmark, not as a method.
 | Path | Contents |
 |---|---|
 | `dataset/` | WM-811K subset and the train / validation / calibration / test splits |
-| `models/` | Fitted classifiers used in the real-data study |
+| `models/` | Fitted classifiers, archived on Zenodo (see below) |
 | `utils/` | Conformal scores, calibration procedures, transformation groups, simulation driver, and the data-handling utilities of the wafer-map application |
 | `notebooks/simulations/` | Synthetic experiments (Section 3 and Appendix B) |
 | `notebooks/real_examples/` | Wafer-map application (Section 4 and Appendix C) |
@@ -108,6 +107,12 @@ classwise TTA-Avg and classwise orbit-averaged APS, with marginal and clustered
 conformal prediction as baselines and the naive multi-copy construction as a
 diagnostic.
 
+The wafer-map study needs the fitted classifiers, archived at
+[https://doi.org/10.5281/zenodo.22810300](https://doi.org/10.5281/zenodo.22810300).
+Download them into `models/`, then run `wm-train-export.ipynb` to produce the
+probability arrays and `7_WM_real_data_models.ipynb` for the conformal analysis.
+The training notebooks reproduce the models from the splits in `dataset/`, though
+retraining does not recover the exact weights.
 ---
 
 ## Reproducing the results
