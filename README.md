@@ -1,81 +1,124 @@
 # class-conditional-cp-data-augmentation
-Data, trained models, and notebooks for simulations and real-data experiments from the article: 
 
-**Title**: Enhancing Class-Conditional Conformal Prediction for Multiclass Scenarios with Data Augmentation
+Code, data and notebooks for the article
 
-**Authors**: Andrea Laurenzi, Matteo Borrotti
-(submitted to JMLR)
+**Enhancing Class-Conditional Conformal Prediction for Multiclass Scenarios
+with Data Augmentation**
+Andrea Laurenzi, Matteo Borrotti
 
 [DOI / arXiv link – add here]
 
+This repository accompanies the revised version of the manuscript. The method
+proposed in the first submission treated transformed copies of a calibration
+point as additional calibration units; that construction has no finite-sample
+conformal guarantee, and the revision replaces it with an orbit-averaged
+nonconformity score, which retains exact validity. The earlier construction is
+retained in the experiments as a diagnostic benchmark, not as a method.
 
-## Repository Structure
-- **`dataset/`** – WM-811K wafer map dataset subset and splits
-- **`models/`** – Pre-trained models (EfficientNet-B0, CNN)
-- **`notebooks/simulations/`** – Jupyter notebooks for empirical experiments (Section 3.1 and Appendix B)
-- **`notebooks/real_examples/`** – Jupyter notebooks for empirical experiments (Section 3.2 and Appendix C)
-- **`utils/`** – Utility scripts for data processing, model training, data-augmentation and class-conditional conformal predition
+---
 
+## Repository structure
 
-## notebooks/nimulations – Empirical part of Section 3.1
-This repository contains Jupyter notebooks for the synthetic experiments presented in **Section 3.1** and **Appendix B** of the article.
+| Path | Contents |
+|---|---|
+| `dataset/` | WM-811K subset and the train / validation / calibration / test splits |
+| `models/` | Fitted classifiers used in the real-data study |
+| `utils/` | Conformal scores, calibration procedures, transformation groups, simulation driver, and the data-handling utilities of the wafer-map application |
+| `notebooks/simulations/` | Synthetic experiments (Section 3 and Appendix B) |
+| `notebooks/real_examples/` | Wafer-map application (Section 4 and Appendix C) |
 
-**Table 5** of the article reports the settings of simulated data scenarios with 8 classes. These experimental settings are provided in the file number_experiments_setup.csv included in this repository.
+---
 
-### Contents
-**1. CP_experiments.ipynb**
-- Simulates the 39 experiments described in Table 5.
-- Trains RF, XGBoost, and MLP models.
-- Applies four conformal prediction methods:
-  - Standard
-  - Classwise
-  - Clustered
-  - Augmented
-- Saves results in CSV files.
+## Modules in `utils/`
 
-**Important Notes:**
-- Original runs were executed in Google Colab. Due to disconnection issues, results were split:
-  - For **α = 0.10**:  
-    `summary_01_part1.csv`, `summary_01_part2.csv`, `summary_01_part3.csv`
-  - For **α = 0.05**:  
-    `summary_005_part1.csv`, `summary_005_part2.csv`, `summary_005_part3.csv`
-- Full simulation can still be executed in one run.
-- Run the notebook **twice**:
-  - Once for **α = 0.10**
-  - Once for **α = 0.05**
-  (Set α in the `CFG` class; other parameters are read from `number_experiments_setup.csv`.)
+Conformal machinery:
 
- **2. CP_analysis_01_interval_plots.ipynb** and **3. CP_analysis_02_interval_plots.ipynb**
-- Generate the plots reported in **Appendix B** of the article.
+- `scores.py` — randomised APS, the orbit-averaged score, the
+  prediction-averaged (TTA-Avg) score, and the mechanism diagnostics
+- `calibration.py` — marginal, classwise, clustered and naive multi-copy
+  calibration, all delegating to the reference implementation
+- `groups.py` — the sign-flip group used in the simulations
+- `image_groups.py` — the dihedral group $D_4$ acting on square images
+- `metrics.py` — aggregation of the simulation output into the reported tables
+- `simulate.py`, `run_grid.py` — data-generating process, replication loop and
+  command-line driver
+- `ding_conformal_utils.py`, `clustering_utils.py` — vendored verbatim from
+  [tiffanyding/class-conditional-conformal](https://github.com/tiffanyding/class-conditional-conformal).
+  Two lines were changed, both marked `[VENDORED]` in the file: `import torch`
+  is commented out, since the score helpers it serves are replaced by
+  `scores.py`, and a package-relative import is made flat. No calibration logic
+  was modified, so the baselines are the authors' own implementation.
 
-## notebooks/real_examples – Empirical part of Section 3.2
-This folder contains Jupyter notebooks for the real-world applications presented in **Section 3.2** and **Appendix C** of the article:
+Wafer-map application: `general_utils.py`, `effnet_utils.py`, `cnn_utils.py`,
+`cfg_effnet.py`, `cfg_cnn.py`.
 
+---
 
-### Contents
+## `notebooks/simulations/`
 
- **1. WMDD_dataset_selection_from_wm811k.ipynb**  
-   Constructs a subset of the WM-811K wafer map dataset and splits it into train, validation, calibration, and test sets.
+Run in order; each notebook states what it needs from the previous one.
 
-**2. WM_Effnet_model.ipynb**  
-   Trains an EfficientNet-B0 model using train + validation sets and evaluates on test.
+**1. `1_pilot_colab.ipynb`** — fixes the design choices: the number of
+transformations $B$, the number of replications $R$, and the cost per
+replication. Also locates the empty-slice warnings emitted by clustered
+conformal prediction in the low-data regime.
 
-**3.WM_CNN_Model.ipynb**  
-   Trains a CNN model using train + validation sets and evaluates on test.
+**2. `2_campaign.ipynb`** — runs the main experiment at $R=300$ over the
+calibration-size grid. Written for Google Colab: results are written to Drive, a
+checkpoint is taken every ten replications, and resuming is exact, so an
+interrupted session costs at most ten replications.
 
-**4.WM_data_augmentation.ipynb**  
-   Applies traditional data augmentation techniques to calibration datasets.
+**3. `3_paper_figures.ipynb`** — produces the figures and tables of the main
+text from the long tables, together with the LaTeX export and the figures printed
+as sentences for the manuscript.
 
-**5. WM_effnet_class_conformal.ipynb**  
-   Applies class-conditional conformal prediction using the trained EfficientNet-B0 model** on calibration and test sets.  
-   
+**4. `4_robustness_classifier.ipynb`** — repeats the comparison with Random
+Forest and an MLP at two calibration sizes, to check that the result is not
+specific to XGBoost.
 
-**6. WM_cnn_class_conformal.ipynb**  
-   Applies class-conditional conformal prediction using the trained CNN model on calibration and test sets.
+**5. `5_clustered_results.ipynb`** — evaluates clustered conformal prediction and
+documents why its clustering step rarely runs in a problem with eight classes:
+the tuning heuristic of Ding et al. was calibrated for 100 to 1000 classes.
 
-   **Important Notes:**
-- The functions used for conformal predictions in notebooks 5 and 6 are adapted from this [repository](https://github.com/tiffanyding/class-conditional-conformal).
+The notebooks read their inputs from Google Drive. Set `BASE` in the setup cell
+of each one before running.
 
-### Workflow overview
-<img width="1698" height="613" alt="image" src="https://github.com/user-attachments/assets/e59c443f-7d67-4e63-ae38-50f6320b3caa" />
+---
+
+## `notebooks/real_examples/`
+
+**1. `WMDD_dataset_selection_from_wm811k.ipynb`** — builds the subset of
+WM-811K and its splits.
+
+**2–5.** Training notebooks for the four classifiers: a CNN trained from
+scratch, EfficientNet-B0, ResNeXt-50 and CoaT-Tiny, the last three fine-tuned
+from ImageNet weights.
+
+**6. `wm-train-export.ipynb`** — computes, for every held-out wafer and every
+element of $D_4$, the predicted probabilities of each fitted model, and writes
+them as `<tag>_probs.npy` of shape `(8, n, 8)` together with the labels and a
+metadata file. The eight forward passes are done once here; the conformal
+notebook then resamples calibration/test splits of an array already in memory.
+Exports are reused when the checkpoint and the held-out set are unchanged, which
+is verified through a SHA1 of the held-out index.
+
+**7. `7_WM_real_data_models.ipynb`** — the conformal analysis: 300
+calibration/test splits at $\alpha \in \{0.10, 0.01\}$, comparing classwise APS,
+classwise TTA-Avg and classwise orbit-averaged APS, with marginal and clustered
+conformal prediction as baselines and the naive multi-copy construction as a
+diagnostic.
+
+---
+
+## Reproducing the results
+
+The simulations are self-contained: `2_campaign.ipynb` regenerates everything
+from scratch. The full grid takes several hours; `3_paper_figures.ipynb` reads
+the long tables and needs minutes.
+
+The wafer-map study needs the fitted models. Run `wm-train-export.ipynb` first
+to produce the probability arrays, then `7_WM_real_data_models.ipynb`.
+
+Paths are hard-coded to Google Drive or Kaggle mounts and must be edited for a
+local run.
 
